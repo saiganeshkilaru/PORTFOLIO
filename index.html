@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Graphic Designer Portfolio</title>
+
+  <!-- GOOGLE FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <style>
+
+    /* =========================
+       GLOBAL STYLES
+    ========================= */
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    :root{
+      --bg:#0f0f14;
+      --card:#181820;
+      --text:#ffffff;
+      --muted:#b9b9c9;
+      --primary:#7c5cff;
+      --secondary:#ff4d8d;
+      --gradient:linear-gradient(135deg,#7c5cff,#ff4d8d);
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
+    }
+
+    img,
+    video{
+      width:100%;
+      display:block;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .container{
+      width:min(1200px,90%);
+      margin:auto;
+    }
+
+    section{
+      padding:110px 0;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    nav{
+      position:fixed;
+      top:0;
+      width:100%;
+      z-index:999;
+      background:rgba(15,15,20,0.7);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(255,255,255,0.05);
+    }
+
+    .nav-wrapper{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:18px 0;
+    }
+
+    .logo{
+      font-size:1.7rem;
+      font-weight:700;
+      background:var(--gradient);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:30px;
+    }
+
+    .nav-links a{
+      color:var(--muted);
+      transition:0.3s;
+    }
+
+    .nav-links a:hover{
+      color:white;
+    }
+
+    /* =========================
+       HERO SECTION
+    ========================= */
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .hero::before{
+      content:'';
+      position:absolute;
+      width:600px;
+      height:600px;
+      border-radius:50%;
+      background:#7c5cff;
+      filter:blur(180px);
+      opacity:0.25;
+      top:-200px;
+      left:-200px;
+    }
+
+    .hero::after{
+      content:'';
+      position:absolute;
+      width:500px;
+      height:500px;
+      border-radius:50%;
+      background:#ff4d8d;
+      filter:blur(180px);
+      opacity:0.2;
+      right:-200px;
+      bottom:-200px;
+    }
+
+    .hero-content{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:50px;
+      align-items:center;
+      position:relative;
+      z-index:2;
+    }
+
+    .hero-text h4{
+      color:var(--secondary);
+      margin-bottom:10px;
+      font-size:1.2rem;
+    }
+
+    .hero-text h1{
+      font-size:4.5rem;
+      line-height:1.1;
+      margin-bottom:20px;
+    }
+
+    .hero-text p{
+      color:var(--muted);
+      line-height:1.8;
+      margin-bottom:35px;
+      max-width:550px;
+    }
+
+    .btn-group{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:14px 30px;
+      border:none;
+      border-radius:50px;
+      cursor:pointer;
+      font-weight:600;
+      transition:0.3s;
+    }
+
+    .btn-primary{
+      background:var(--gradient);
+      color:white;
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-4px);
+      box-shadow:0 15px 30px rgba(124,92,255,0.4);
+    }
+
+    .btn-outline{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.15);
+      color:white;
+    }
+
+    .btn-outline:hover{
+      background:white;
+      color:black;
+    }
+
+    .hero-card{
+      background:rgba(255,255,255,0.05);
+      padding:20px;
+      border-radius:30px;
+      backdrop-filter:blur(20px);
+      border:1px solid rgba(255,255,255,0.08);
+      transform:rotate(-5deg);
+      transition:0.4s;
+    }
+
+    .hero-card:hover{
+      transform:rotate(0deg) scale(1.02);
+    }
+
+    .hero-card img{
+      height:500px;
+      object-fit:cover;
+      border-radius:20px;
+    }
+
+    /* =========================
+       SECTION TITLE
+    ========================= */
+
+    .section-title{
+      text-align:center;
+      margin-bottom:70px;
+    }
+
+    .section-title h2{
+      font-size:3rem;
+      margin-bottom:10px;
+    }
+
+    .section-title p{
+      color:var(--muted);
+    }
+
+    /* =========================
+       SERVICES
+    ========================= */
+
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+    }
+
+    .service-card{
+      background:var(--card);
+      padding:35px;
+      border-radius:25px;
+      transition:0.4s;
+      border:1px solid rgba(255,255,255,0.05);
+    }
+
+    .service-card:hover{
+      transform:translateY(-10px);
+      border-color:rgba(124,92,255,0.5);
+    }
+
+    .service-icon{
+      font-size:3rem;
+      margin-bottom:20px;
+    }
+
+    .service-card h3{
+      margin-bottom:15px;
+    }
+
+    .service-card p{
+      color:var(--muted);
+      line-height:1.7;
+    }
+
+    /* =========================
+       PORTFOLIO
+    ========================= */
+
+    .portfolio-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:25px;
+    }
+
+    .portfolio-item{
+      position:relative;
+      overflow:hidden;
+      border-radius:25px;
+      cursor:pointer;
+      height:350px;
+    }
+
+    .portfolio-item img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:0.5s;
+    }
+
+    .portfolio-item:hover img{
+      transform:scale(1.1);
+    }
+
+    /* VIDEO */
+
+    .portfolio-video{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius:25px;
+      transition:0.4s;
+    }
+
+    .video-item:hover .portfolio-video{
+      transform:scale(1.05);
+    }
+
+    /* PLAY BUTTON */
+
+    .play-btn{
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%, -50%);
+      width:75px;
+      height:75px;
+      border-radius:50%;
+      background:rgba(255,255,255,0.15);
+      backdrop-filter:blur(10px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:30px;
+      color:white;
+      z-index:5;
+      pointer-events:none;
+      transition:0.3s;
+    }
+
+    .video-item.playing .play-btn{
+      opacity:0;
+    }
+
+    /* OVERLAY */
+
+    .portfolio-overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      padding:30px;
+      opacity:0;
+      transition:0.4s;
+    }
+
+    .portfolio-item:hover .portfolio-overlay{
+      opacity:1;
+    }
+
+    /* =========================
+       CONTACT
+    ========================= */
+
+    .contact-wrapper{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:40px;
+      align-items:center;
+    }
+
+    .contact-info h2{
+      font-size:3rem;
+      margin-bottom:20px;
+    }
+
+    .contact-info p{
+      color:var(--muted);
+      line-height:1.8;
+      margin-bottom:30px;
+    }
+
+    .contact-form{
+      background:var(--card);
+      padding:40px;
+      border-radius:30px;
+    }
+
+    .contact-form input,
+    .contact-form textarea{
+      width:100%;
+      padding:16px;
+      margin-bottom:20px;
+      border:none;
+      border-radius:15px;
+      background:#232331;
+      color:white;
+      font-family:inherit;
+    }
+
+    .contact-form textarea{
+      min-height:140px;
+      resize:none;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer{
+      padding:40px 0;
+      text-align:center;
+      color:var(--muted);
+      border-top:1px solid rgba(255,255,255,0.05);
+    }
+
+    /* =========================
+       ANIMATION
+    ========================= */
+
+    .reveal{
+      opacity:0;
+      transform:translateY(60px);
+      transition:1s;
+    }
+
+    .reveal.active{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media(max-width:900px){
+
+      .hero-content,
+      .contact-wrapper{
+        grid-template-columns:1fr;
+      }
+
+      .hero-text h1{
+        font-size:3rem;
+      }
+
+      .nav-links{
+        display:none;
+      }
+
+      .hero{
+        padding-top:100px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav>
+    <div class="container nav-wrapper">
+
+      <div class="logo">
+        VENKAT KILARU
+      </div>
+
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="hero" id="home">
+
+    <div class="container hero-content">
+
+      <div class="hero-text reveal">
+
+        <h4>Hi, I'm Venkat</h4>
+
+        <h1>
+          Designing
+          Visual Experiences
+          That Inspire
+        </h1>
+
+        <p>
+          Visual storyteller dedicated to crafting clean, impactful designs. 
+          With a focus on brand identity and digital aesthetics, I help 
+          businesses communicate their vision through thoughtful typography, color theory, and modern composition. 
+          Let’s build something memorable.
+        </p>
+
+        <div class="btn-group">
+
+          <a href="#portfolio" class="btn btn-primary">
+            View Portfolio
+          </a>
+
+          <a href="#contact" class="btn btn-outline">
+            Hire Me
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="hero-image reveal">
+
+        <div class="hero-card">
+
+          <img
+            src="IMAGES/venkat2.png"
+            alt="Designer">
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SERVICES -->
+
+  <section id="services">
+
+    <div class="container">
+
+      <div class="section-title reveal">
+
+        <h2>My Services</h2>
+
+        <p>
+          Creative solutions tailored for your business.
+        </p>
+
+      </div>
+
+      <div class="services-grid">
+
+        <div class="service-card reveal">
+          <div class="service-icon"></div>
+          <h3>Brand Guidelines & Logo Design</h3>
+          <p>Comprehensive brand identity development and logo design.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon"></div>
+          <h3>Business Cards</h3>
+          <p>Professional Business cards that make a lasting impression and reinforce your brand identity.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon"></div>
+          <h3>Social Media Design</h3>
+          <p>Scroll-Stopping social media creatives for Facebook, Instagram, and other platforms.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon"></div>
+          <h3>Flyer & Brouchure Designs</h3>
+          <p>Brochures, posters, and print materials.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon"></div>
+          <h3>Menu Cards</h3>
+          <p>Premium menu design concepts.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon"></div>
+          <h3>Video Editings</h3>
+          <p>Professional video editing services for commercials, events, and more.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon"></div>
+          <h3>Political Posters </h3>
+          <p>Eye-catching posters for political Social media campaigns.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon"></div>
+          <h3>Wedding & Event Invitations</h3>
+          <p>Beautifully designed invitations for your special occasions.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PORTFOLIO -->
+
+  <section id="portfolio">
+
+    <div class="container">
+
+      <div class="section-title reveal">
+
+        <h2>Featured Projects</h2>
+
+        <p>
+          A collection of branding, UI, and video projects.
+        </p>
+
+      </div>
+
+      <div class="portfolio-grid">
+
+        <!-- IMAGE -->
+
+        <div class="portfolio-item reveal">
+
+          <img
+            src="images/Wini's Couture.jpg"
+            alt="">
+
+          <div class="portfolio-overlay">
+            <h3>Botique Brand Logo</h3>
+            <p>Logo Designing</p>
+          </div>
+
+        </div>
+
+        <!-- IMAGE -->
+
+        <div class="portfolio-item reveal">
+
+          <img
+            src="images/001.jpg"
+            alt="">
+
+          <div class="portfolio-overlay">
+            <h3>Pickles Brand Menu Card</h3>
+            <p>Menu CardDesign</p>
+          </div>
+
+        </div>
+
+        <!-- VIDEO -->
+
+        <div class="portfolio-item reveal video-item">
+
+          <video
+            class="portfolio-video"
+            muted
+            loop
+            playsinline
+            preload="metadata">
+
+            <source src="videos/Sanva Botique.mp4" type="video/mp4">
+
+          </video>
+
+          <div class="play-btn">▶</div>
+
+          <div class="portfolio-overlay">
+            <h3>Botique Brand Dresses Video</h3>
+            <p>Creative Clothing Showcase</p>
+          </div>
+
+        </div>
+
+        <!-- IMAGE -->
+
+        <div class="portfolio-item reveal">
+
+          <img
+            src="images/post 7.jpg"
+            alt="">
+
+          <div class="portfolio-overlay">
+            <h3>Interior Wood Brand</h3>
+            <p>Social Media Design</p>
+          </div>
+
+        </div>
+
+        <!-- VIDEO -->
+
+        <div class="portfolio-item reveal video-item">
+
+          <video
+            class="portfolio-video"
+            muted
+            loop
+            playsinline
+            preload="metadata">
+
+            <source src="videos/VINEELA SRI INVITATION.mp4" type="video/mp4">
+
+          </video>
+
+          <div class="play-btn">▶</div>
+
+          <div class="portfolio-overlay">
+            <h3>Wedding Invitation</h3>
+            <p>Invitation Video</Video></p>
+          </div>
+
+        </div>
+
+        <!-- IMAGE -->
+
+        <div class="portfolio-item reveal">
+
+          <img
+            src="images/0003.jpg"
+            alt="">
+
+          <div class="portfolio-overlay">
+            <h3>Political Posters</h3>
+            <p>Political Social Media Design</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+
+  <section id="contact">
+
+    <div class="container">
+
+      <div class="contact-wrapper">
+
+        <div class="contact-info reveal">
+
+          <h2>Let’s Work Together</h2>
+
+          <p>
+            Looking for a creative designer to elevate your brand?
+            Let’s create something amazing together.
+          </p>
+
+          <div style="line-height:2;">
+            <p>📧 Saiganeshkilaru@gmail.com</p>
+            <p>📱 +91 98665 42216</p>
+            <p>📍 Vijayawada, India</p>
+          </div>
+
+        </div>
+
+        <form class="contact-form reveal" id="contactForm">
+
+          <input type="text" placeholder="Your Name" required>
+
+          <input type="email" placeholder="Your Email" required>
+
+          <textarea placeholder="Tell me about your project..." required></textarea>
+
+          <button class="btn btn-primary" type="submit">
+            Send Message
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    © 2026 Venkata Siva Naga Sai Ganesh — Crafted with Creativity ✨
+  </footer>
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    // =========================
+    // REVEAL ANIMATION
+    // =========================
+
+    const reveals = document.querySelectorAll('.reveal');
+
+    function revealElements(){
+
+      reveals.forEach((element) => {
+
+        const windowHeight = window.innerHeight;
+        const elementTop = element.getBoundingClientRect().top;
+
+        if(elementTop < windowHeight - 100){
+          element.classList.add('active');
+        }
+
+      });
+
+    }
+
+    window.addEventListener('scroll', revealElements);
+
+    revealElements();
+
+    // =========================
+    // VIDEO PLAY / PAUSE
+    // =========================
+
+    const videoItems = document.querySelectorAll('.video-item');
+
+    videoItems.forEach((item) => {
+
+      const video = item.querySelector('video');
+
+      // HOVER PREVIEW
+
+      item.addEventListener('mouseenter', () => {
+
+        if(!item.classList.contains('playing')){
+          video.play();
+        }
+
+      });
+
+      item.addEventListener('mouseleave', () => {
+
+        if(!item.classList.contains('playing')){
+
+          video.pause();
+          video.currentTime = 0;
+
+        }
+
+      });
+
+      // CLICK TO PLAY / PAUSE
+
+      item.addEventListener('click', () => {
+
+        if(video.paused){
+
+          document.querySelectorAll('.portfolio-video').forEach((v) => {
+            v.pause();
+          });
+
+          document.querySelectorAll('.video-item').forEach((card) => {
+            card.classList.remove('playing');
+          });
+
+          video.play();
+
+          item.classList.add('playing');
+
+        }else{
+
+          video.pause();
+
+          item.classList.remove('playing');
+
+        }
+
+      });
+
+    });
+
+    // =========================
+    // CONTACT FORM
+    // =========================
+
+    const form = document.getElementById('contactForm');
+
+    form.addEventListener('submit', (e) => {
+
+      e.preventDefault();
+
+      alert('Message Sent Successfully ✔️');
+
+      form.reset();
+
+    });
+
+  </script>
+
+</body>
+
+</html>
